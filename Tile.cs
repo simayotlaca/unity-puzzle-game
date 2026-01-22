@@ -2,9 +2,6 @@ using UnityEngine;
 
 namespace PuzzleGame.Grid
 {
-    /// <summary>
-    /// Individual tile logic including type, position, and visual representation
-    /// </summary>
     public class Tile : MonoBehaviour
     {
         [Header("Tile Data")]
@@ -30,9 +27,6 @@ namespace PuzzleGame.Grid
             UpdateVisual();
         }
 
-        /// <summary>
-        /// Updates tile visual based on type
-        /// </summary>
         private void UpdateVisual()
         {
             if (spriteRenderer != null && tileColors != null && tileType < tileColors.Length)
@@ -41,9 +35,6 @@ namespace PuzzleGame.Grid
             }
         }
 
-        /// <summary>
-        /// Sets new grid position (used when swapping)
-        /// </summary>
         public void SetGridPosition(int x, int y)
         {
             gridX = x;
@@ -53,25 +44,18 @@ namespace PuzzleGame.Grid
             transform.position = new Vector3(x, y, 0);
         }
 
-        /// <summary>
-        /// Handles tile selection/deselection
-        /// </summary>
         public void SetSelected(bool selected)
         {
             isSelected = selected;
-            // TODO: Add visual feedback for selection (outline, scale, etc.)
         }
 
-        /// <summary>
-        /// Destroys this tile (for matches)
-        /// </summary>
         public void DestroyTile()
         {
-            // TODO: Add particle effect or animation
+
             Destroy(gameObject);
         }
 
-        // Getters
+
         public int TileType => tileType;
         public int GridX => gridX;
         public int GridY => gridY;
@@ -79,7 +63,6 @@ namespace PuzzleGame.Grid
 
         private void OnMouseDown()
         {
-            // TODO: Handle player input for tile selection
             Debug.Log($"Tile clicked at ({gridX}, {gridY}) - Type: {tileType}");
         }
     }
