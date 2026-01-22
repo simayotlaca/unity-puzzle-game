@@ -2,9 +2,6 @@ using UnityEngine;
 
 namespace PuzzleGame.GameManagement
 {
-    /// <summary>
-    /// Manages score, combo system, and high score persistence
-    /// </summary>
     public class ScoreManager : MonoBehaviour
     {
         [Header("Score Settings")]
@@ -22,9 +19,6 @@ namespace PuzzleGame.GameManagement
             LoadHighScore();
         }
 
-        /// <summary>
-        /// Adds points based on tiles matched and current combo
-        /// </summary>
         public void AddScore(int tilesMatched)
         {
             int points = Mathf.RoundToInt(basePointsPerTile * tilesMatched * Mathf.Pow(comboMultiplier, currentCombo));
@@ -40,25 +34,15 @@ namespace PuzzleGame.GameManagement
             }
         }
 
-        /// <summary>
-        /// Increments combo counter for chain reactions
-        /// </summary>
         public void IncrementCombo()
         {
             currentCombo++;
         }
 
-        /// <summary>
-        /// Resets combo when no more matches occur
-        /// </summary>
         public void ResetCombo()
         {
             currentCombo = 0;
         }
-
-        /// <summary>
-        /// Resets current score for new game
-        /// </summary>
         public void ResetScore()
         {
             currentScore = 0;
