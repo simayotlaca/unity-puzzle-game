@@ -3,17 +3,11 @@ using UnityEngine;
 
 namespace PuzzleGame.Grid
 {
-    /// <summary>
-    /// Detects tile matches (3 or more in a row) horizontally and vertically
-    /// </summary>
     public class MatchDetector : MonoBehaviour
     {
         [SerializeField] private GridManager gridManager;
         [SerializeField] private int minMatchLength = 3;
 
-        /// <summary>
-        /// Scans entire grid for matches
-        /// </summary>
         public List<Tile> FindAllMatches()
         {
             HashSet<Tile> matchedTiles = new HashSet<Tile>();
@@ -31,7 +25,6 @@ namespace PuzzleGame.Grid
                 }
             }
 
-            // Check vertical matches
             for (int x = 0; x < gridManager.GetWidth(); x++)
             {
                 for (int y = 0; y < gridManager.GetHeight(); y++)
@@ -46,10 +39,6 @@ namespace PuzzleGame.Grid
 
             return new List<Tile>(matchedTiles);
         }
-
-        /// <summary>
-        /// Checks for horizontal matches starting from given position
-        /// </summary>
         private List<Tile> CheckHorizontalMatch(int startX, int startY)
         {
             List<Tile> matches = new List<Tile>();
@@ -77,9 +66,6 @@ namespace PuzzleGame.Grid
             return matches.Count >= minMatchLength ? matches : new List<Tile>();
         }
 
-        /// <summary>
-        /// Checks for vertical matches starting from given position
-        /// </summary>
         private List<Tile> CheckVerticalMatch(int startX, int startY)
         {
             List<Tile> matches = new List<Tile>();
@@ -107,9 +93,6 @@ namespace PuzzleGame.Grid
             return matches.Count >= minMatchLength ? matches : new List<Tile>();
         }
 
-        /// <summary>
-        /// Checks if a specific tile is part of any match
-        /// </summary>
         public bool IsTileInMatch(int x, int y)
         {
             List<Tile> horizontalMatch = CheckHorizontalMatch(x, y);
